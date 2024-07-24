@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakriti Shrestha - Bright and Bold</title>
+    <style>
+        /* New color scheme and design */
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: #0077cc;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 1rem;
+            background-color: #0077cc;
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            text-align: center;
+            z-index: 101;
+        }
+
+        .menu-toggle .dot {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px auto;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .menu-toggle.active .dot {
+            background-color: #ffd700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            font-size: 18px;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffd700;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                background-color: #0077cc;
+                text-align: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            nav a {
+                font-size: 16px;
+            }
+        }
+
+        section {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        section.active {
+            background-color: #e0f7fa;
+            color: #0077cc;
+        }
+
+        footer {
+            background-color: #0077cc;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        footer.active {
+            background-color: #005999;
+            color: #ffd700;
+        }
+
+        .intro h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #0077cc;
+            animation: fadeIn 2s;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: #555;
+            animation: fadeIn 2s 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #slideshow {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #slideshow img {
+            width: 100%;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        #slideshow img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            animation: popIn 0.5s forwards 1s;
+        }
+
+        @keyframes popIn {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .contact-form h2 {
+            color: #0077cc;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form label {
+            display: block;
+            color: #0077cc;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            background-color: #0077cc;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #005999;
+            transform: scale(1.05);
+        }
+
+        .backlog {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .backlog h2 {
+            color: #0077cc;
+            margin-bottom: 1rem;
+        }
+
+        .backlog p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .blog {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .blog h2 {
+            color: #0077cc;
+            margin-bottom: 1rem;
+        }
+
+        .blog p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Floating bubbles effect */
+        section::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            animation: float 10s infinite linear reverse;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-toggle" id="menu-toggle">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <nav>
+            <ul id="menu" class="hidden">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#backlog">Backlog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="intro">
+            <h1>I'M Aakriti Shrestha</h1>
+            <p>I'm from New-Baneshwor, Kathmandu, Nepal</p>
+            <div id="slideshow">
+                <img src="362922695_615568870705190_6681868657160021270_n.jpg" alt="Image">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content">
+            <h2>Age and DOB</h2>
+            <p>Age: 17 Years.<br>DOB: 2065-04-10</p>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="portfolio-items">
+            <h2>Class and Studies</h2>
+            <div class="project">
+                <h3>Class: 11</h3>
+                <p>TRITON College</p>
+            </div>
+            <div class="project">
+                <h3>Qualities</h3>
+                <p>Intelligent<br>Helpful<br>Kind</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="blog">
+            <h2>Blog</h2>
+            <p>
+                Welcome to my blog! Here I share my experiences, thoughts, and learning journey. Stay tuned for updates on my academic and personal adventures.
+                I hope to provide valuable insights and inspiration through my writings.
+                Feel free to connect and share your thoughts in the comments.
+                Thank you for visiting my space!
+            </p>
+        </div>
+    </section>
+
+    <section id="backlog">
+        <div class="backlog">
+            <h2>Backlog Status</h2>
+            <p>
+                Currently, I have no significant backlogs. I am committed to staying on top of my studies and maintaining good academic performance.
+                Regular study habits and proactive learning strategies help me manage my coursework effectively.
+                I aim to keep my academic record clean and continue to excel in my studies.
+                Feel free to reach out if you have any questions or need advice on managing your own academic workload!
+            </p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-form">
+            <h2>Reach Out and Inspire</h2>
+            <form action="https://formspree.io/f/mrbzegey" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit">Ignite the Spark</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Aakriti Shrestha. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                window.scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Adding scroll event to change header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Observing sections for active class toggling
+        const options = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const navLink = document.querySelector(`nav a[href="#${id}"]`);
+                if (entry.isIntersecting) {
+                    navLink.classList.add('active');
+                    entry.target.classList.add('active');
+                    document.querySelector('footer').classList.add('active');
+                } else {
+                    navLink.classList.remove('active');
+                    entry.target.classList.remove('active');
+                    document.querySelector('footer').classList.remove('active');
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Toggle menu visibility on small screens
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
